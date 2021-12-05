@@ -6,15 +6,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{% url 'shortstory' %}">short story</a>
+    <a href="#">long story</a>
+    <a href="#">books</a>
+    <a href="#">Discussion</a>
+    <a href="{% url 'login' %}">Login</a>
     <title>Document</title>
 </head>
 
 <body>
-    <a href="#">short story</a>
-    <a href="#">long story</a>
-    <a href="#">books</a>
-    <a href="#">Discussion</a>
-    <a href="account/login">Login</a>
+    <h1>recent short story</h1>
+    <div>
+        {% for i in short_story %}
+        <p>{{ i.title }} | {{ i.created }}</p>
+        <br>
+        <p>{{ i.context }}</p>
+        <br> {% endfor %}
+    </div>
+
 </body>
 
 </html>
