@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Story</title>
+</head>
+
+<body>
+    <div>
+        <h5>List of all Short Story</h5>
+        <div>
+            <p>{% for i in short_story %}
+                <p> <a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a>|{{ i.created }}
+                </p>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
