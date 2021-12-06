@@ -34,7 +34,7 @@
                 <h2 class="title pt-5 pb-3">Sign up</h2>
                 <form class="myform" enctype="multipart/form-data" action="signup" method="POST">
                     {% csrf_token %}
-                    <div class="row rone">
+                    <!-- <div class="row rone">
                         <div class="form-group col-md-6 fone py-3"> <input type="text" class="form-control" name="firstName" placeholder="First name" required=""> </div>
                         <div class="form-group col-md-6 ftwo py-3"> <input type="text" class="form-control" name="lastName" placeholder="Last name" required=""> </div>
                     </div>
@@ -77,8 +77,10 @@
                         <div class="form-group col-md-6 fseven py-3"> <button type="submit" class="btn btn-primary"><span>Sign Up</span></button> </div>
                         <div class="form-group col-md-6 feight py-3">
                             <!--p class="text-muted">Already have an account?<br><a href="urls">Sign in</a></p-->
-                        </div>
-                    </div>
+                    <!-- </div>
+                    </div> -->
+                    {{ form.as_p }}
+                    <input type="submit" value="signup">
                 </form>
             </div>
         </div>

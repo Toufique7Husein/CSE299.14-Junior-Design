@@ -11,6 +11,10 @@ class ShortStory(models.Model):
     update = models.DateField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
+    
+    class Meta:
+        ordering = ['-update','-created']
+    
     def __str__(self):
         return str(self.title)
     
@@ -21,6 +25,9 @@ class Comment(models.Model):
     body = models.TextField()
     update = models.DateField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-update', '-created']
         
     def __str__(self):
         return self.body[0:50]

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Short Story</title>
+    <a href="{% url 'shortstory_from' %}">|+|</a>
 </head>
 
 <body>
@@ -13,7 +14,9 @@
         <h5>List of all Short Story</h5>
         <div>
             <p>{% for i in short_story %}
-                <p> <a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a>|{{ i.created }}
+                <p>
+                    <h>@{{ i.writer.username }}</h>
+                    <a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a>|{{ i.created }}
                 </p>
                 {% endfor %}
             </p>

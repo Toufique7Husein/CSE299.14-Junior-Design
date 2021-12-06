@@ -18,6 +18,19 @@
             {{ read.context }}
         </p>
     </div>
+    <div>
+        <h3>Comments</h3>
+        {% for i in comment %}
+        <small><li>@{{ i.user.username }} | {{ i.created|timesince }}<h5></h5><p>{{ i.body }}</p></li>
+        </small> {% endfor %}
+    </div>
+
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="body" placeholder="write your comments here...">
+        </form>
+    </div>
 </body>
 
 </html>
