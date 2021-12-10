@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,16 +6,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrapp css -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
     <title>Document</title>
 </head>
 
 <body>
-    <div>
-        <form method="post" action="">
-            {% csrf_token %} {{ from.as_p }}
-            <input type="submit" value="submit" />
-        </form>
+    <div class="container my-5 p-3">
+        <div class="contac-section">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="story-submission">
+                    <div class="title text-center mb-3">
+                        <h3 class="font-weight-border">Write Herer</h3>
+                        <form method="post" action="">
+                            {% csrf_token %} {% for field in from %}
+                            <div class="container p-2">{{ field }}</div> {% endfor %}
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">POST</button>
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

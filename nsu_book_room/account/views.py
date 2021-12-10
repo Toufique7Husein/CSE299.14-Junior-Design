@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as user_login, logout
-from django.contrib.auth.forms import UserCreationForm
+from .froms import SignupFrom
+from .models import User
 
 
 # Create your views here.
@@ -10,6 +10,8 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         passward = request.POST['password']
+        print(username)
+        print(passward)
         try:
             user = User.objects.get(username = username)
         except:
@@ -26,25 +28,21 @@ def login(request):
     return render(request, 'login.html', context)
 
 
-def signun(request):
-    form = UserCreationForm()
+def signup(request):
+    form = SignupFrom()
+    print(request.method)
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignupFrom(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
+            user = form.save(commit = False)
             user.username = user.username.lower()
             user.save()
             return redirect('login')
         else:
-            messages(request, 'an error occurs during the registration!')
-    context = {'form':form}
+           # messages(request, 'an error occurs during the registration!')
+           return redirect('home')
+    context = {'form' : form}
     return render(request, 'signup.html', context)
-
-# def profile(request):
-#    # return render(request, 'profile')
-
-# def editProfile(request):
-#     return render(request, 'profile', '')
 
 
 
