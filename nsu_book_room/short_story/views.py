@@ -19,6 +19,7 @@ def readShortStory(request, pk):
             post = post,
             body = request.POST.get('body')
         )
+      #  print(request.user.id)
         newmessage.save()
         return redirect('readShortStory', pk = post.id)
     comments = post.comment_set.all()
@@ -28,25 +29,30 @@ def readShortStory(request, pk):
 
 @login_required(login_url='login')
 def creatShortStory(request):
+    page = "add"
     froms = ShortStoryFrom()
     if request.method == 'POST':
         froms = ShortStoryFrom(request.POST)
         if froms.is_valid():
-            froms.save()
+            post = froms.save(commit = False)
+            post.writer = request.user
+            post.save()
             return redirect('home')
-    context = {'from':froms}
+    context = {'from':froms, 'page' : page}
     return render(request, 'shortstory_from.html', context)
 
 def updateShortStory(request, pk):
-    print(pk + "kkk")
+   # print(pk + "kkk")
+    page = "edit"
     post = ShortStory.objects.get(id = int(pk))
-    
     if request.method == 'POST':
         form = ShortStoryFrom(request.POST, instance=post)
         if form.is_valid():
-            form.save()
+            temp = form.save(commit = False)
+            temp.writer = request.user
+            temp.save()
             return redirect('home')
     form = ShortStoryFrom(instance=post)
-    context = {'from' : form}
+    context = {'from' : form, 'page' : page}
     return render(request, 'shortstory_from.html', context)
     

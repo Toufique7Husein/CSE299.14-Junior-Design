@@ -8,8 +8,12 @@ class ShortStoryFrom(ModelForm):
         fields = ['title', 'context']
        
         widgets = {
-            'title' : forms.TextInput(attrs={'class':'form-control'}),
-            'context' : forms.Textarea(attrs={'class' : 'form-control'}),
+            'title' : forms.TextInput(attrs={'class':'form-control',
+                                              'placeholder' : 'Story Name'
+                                             }),
+            'context' : forms.Textarea(attrs={'class' : 'form-control',
+                                              'placeholder' : 'Write From Here'
+                                              }),
         }
         
         
