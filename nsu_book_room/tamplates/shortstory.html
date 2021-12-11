@@ -1,27 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'Base.html' %} {% load static %}{% block content %} {% block user %}{% if request.user.is_authenticated %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Story</title>
-    <a href="{% url 'shortstory_from' %}">|+|</a>
-</head>
+<img style="width:20px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">
+<a href="#" class="pt-2">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}" class="pt-2">| logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
 
-<body>
-    <div>
-        <h5>List of all Short Story</h5>
-        <div>
-            <p>{% for i in short_story %}
-                <p>
-                    <h>@{{ i.writer.username }}</h>
-                    <a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a>|{{ i.created }}
-                </p>
-                {% endfor %}
-            </p>
+<main>
+    <div class="container my-5 p-3 shadow-lg">
+
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <table class="table border border-dark">
+                    <tr class="table-active">
+                        <td class="table-info">Writer</td>
+                        <td class="table-light">Story Name</td>
+                        <td class="table-dark">Date Of Upload</td>
+                    </tr>
+                    {% for i in short_story %}
+                    <tr class="table-success">
+                        <td class="table-info">@{{ i.writer.username }}</td>
+                        <td class="table-light"><a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a></td>
+                        <td class="table-dark">
+                            <p class="text-mute">{{ i.created }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+            </div>
         </div>
     </div>
-</body>
-
-</html>
+</main>
+{% endblock %}
