@@ -5,7 +5,7 @@ from account.models import User
 # Create your models here.
 class ShortStory(models.Model):
     title = models.CharField(max_length=200)
-    writer = models.ForeignKey(User,on_delete = models.CASCADE)
+    writer = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
     #perticipents
     context = models.TextField(null = True, blank = True)
     update = models.DateField(auto_now=True)
@@ -25,8 +25,8 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ['-update', '-created']
+        ordering = ['-created', '-update']
         
     def __str__(self):
-        return self.body[0:50]
+        return self.body[0:100]
     
