@@ -1,0 +1,21 @@
+{% extends 'Base.html' %} {% load static %} {% block content %}
+<div class="container my-5 p-3">
+    <div class="shadow p-2 mb-5 bg-body rounded border border-dark">
+        <!-- image section -->
+        <img src="{% static 'login/image/userImage.png'%}" class="rounded-circle d-block m-auto p-3 " style="width: 150px;">
+        <h6 class="text-center mb-3 ">User Name</h6>
+        <p class="font-italic text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt provident, quas necessitatibus ipsum aliquid, harum repellendus quidem, ad illum libero dignissimos explicabo cumque vel autem molestias! Quibusdam amet id pariatur.</p>
+        <!-- image section -->
+        <div class="row">
+            <div class="col-4">
+                <ul>
+                    <li>Name: Toufique</li>
+                    <li>Email: tfq55390@gmail.com</li>
+                    <li>Adress: Dhaka, Bashundhara</li>
+                    <li>User Name: tfq</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -50,3 +50,8 @@ def user_logout(request):
     logout(request)
     return redirect('home')
 
+
+def user_profile(request, pk):
+    context = {}
+    return render(request, 'user_profile.html',context)
+
