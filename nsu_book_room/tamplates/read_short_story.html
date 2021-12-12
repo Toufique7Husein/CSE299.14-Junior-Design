@@ -14,9 +14,7 @@
     </h1>
     <br/>
     <div>
-        <p>
-            {{ read.context }}
-        </p>
+        <p>{{ read.context | safe }}</p>
     </div>
     <div>
         <h3>Comments</h3>

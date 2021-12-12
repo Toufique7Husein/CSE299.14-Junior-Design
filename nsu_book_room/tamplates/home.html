@@ -22,7 +22,7 @@
                             <a href="{% url 'editshortstory' i.id %}">Edit</a></p>
                         {% endif %}
                         <br>
-                        <p>{{ i.context }}</p>
+                        <p>{{ i.context|safe }}</p>
                     </div>
                     {% endfor %}
                 </div>
