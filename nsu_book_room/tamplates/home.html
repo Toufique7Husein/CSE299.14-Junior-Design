@@ -1,25 +1,35 @@
  {% extends 'Base.html' %} {% load static %} {% block content %} {% block user %}{% if request.user.is_authenticated %}
 
-<img style="width:20px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">
-<a href="{% url 'user_profile' user.id %}" class="pt-2">{{ request.user.username }}</a>
-<a href="{% url 'user_logout' %}" class="pt-2">| logout</a> {% else %}
+<a href="{% url 'user_profile' user.id %}"><img style="width:30px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}">| logout</a> {% else %}
 <a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
+
 <main>
-    <div class="container my-5 p-3 shadow-lg">
+    <div class="container my-5 p-1 shadow-lg">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
-                <h1>recent short story</h1>
+                <!-- <h1>recent short story</h1> -->
                 <div>
                     {% for i in short_story %}
-                    <div class="shadow p-2 mb-5 bg-body rounded border border-dark">
+                    <div class="shadow p-2 mb-3 bg-body rounded border border-dark">
                         <p>
-                            <div class="col col-lg-2 p-1 mb-5 border rounded border-round">
-                                <h5> @{{ i.writer.username }}</h5>
+                            <div class="media col col-lg-2 p-1 mb-1">
+                                <a href="{% url 'user_profile' i.writer.id %}"><img style="width: 40px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}" alt=""></a>
+                                <div class="media-body mr-2">
+                                    <h5>{{ i.writer.username }}</h5>
+                                </div>
                             </div>
-                            <p class="font-italic">{{ i.title }}</p>{{ i.created }} | {% if request.user.id == i.writer.id %}
-                            <a href="{% url 'editshortstory' i.id %}">Edit</a></p>
+                            <footer class="blockquote-footer text-left">
+                                {{ i.created|timesince }}
+                            </footer>
+                            <h6 class="font-italic text-weight-bold text-right">{{ i.title }}</h6>
+
+                            <footer class="blockquote-footer text-right">
+                                last edit <a href="{% url 'editshortstory' i.id %}">Edit</a> {{ i.created }}
+                            </footer>
+                            {% if request.user.id == i.writer.id %}
+                        </p>
                         {% endif %}
-                        <br>
                         <p>{{ i.context|safe }}</p>
                     </div>
                     {% endfor %}
@@ -27,13 +37,15 @@
             </div>
             <div class="col-lg-4 col-sm-12 my-5 p-3">
                 <div class="rounded border border-dark">
-                    <h4>
-                        <p class="text-center">recent activity</p>
-                    </h4>
-                    <ul>
-                        <li>this books amazing</li>
-                        <li>yeaah good</li>
-                    </ul>
+                    <div class="list-group">
+                        <h5 class="list-group-item list-group-item-action text-center active bg-info">
+                            Contribute Hare
+                        </h5>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'shortstory_from' %}">
+                            <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Short Story</a></button>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="#">
+                                <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Long Story</a></button>
+                    </div>
                 </div>
             </div>
         </div>

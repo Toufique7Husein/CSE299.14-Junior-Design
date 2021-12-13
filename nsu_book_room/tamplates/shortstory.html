@@ -1,8 +1,7 @@
 {% extends 'Base.html' %} {% load static %}{% block content %} {% block user %}{% if request.user.is_authenticated %}
 
-<img style="width:20px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">
-<a href="#" class="pt-2">{{ request.user.username }}</a>
-<a href="{% url 'user_logout' %}" class="pt-2">| logout</a> {% else %}
+<a href="{% url 'user_profile' user.id %}"><img style="width:30px; height:auto;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}">| logout</a> {% else %}
 <a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
 
 <main>

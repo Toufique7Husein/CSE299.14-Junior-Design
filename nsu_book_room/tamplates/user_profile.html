@@ -1,21 +1,28 @@
-{% extends 'Base.html' %} {% load static %} {% block content %}
-<div class="container my-5 p-3">
+{% extends 'Base.html' %} {% load static %} {% block content %} {% block user %}{% if request.user.is_authenticated %}
+
+<a href="{% url 'user_profile' request.user.id %}"><img style="width:30px;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}">| logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
+<div class="container my-5 p-2 shadow-lg">
     <div class="shadow p-2 mb-5 bg-body rounded border border-dark">
         <!-- image section -->
         <img src="{% static 'login/image/userImage.png'%}" class="rounded-circle d-block m-auto p-3 " style="width: 150px;">
-        <h6 class="text-center mb-3 ">User Name</h6>
+        <h6 class="text-center mb-3 ">{{user.name}}</h6>
         <p class="font-italic text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt provident, quas necessitatibus ipsum aliquid, harum repellendus quidem, ad illum libero dignissimos explicabo cumque vel autem molestias! Quibusdam amet id pariatur.</p>
         <!-- image section -->
         <div class="row">
             <div class="col-4">
-                <ul>
-                    <li>Name: Toufique</li>
-                    <li>Email: tfq55390@gmail.com</li>
-                    <li>Adress: Dhaka, Bashundhara</li>
-                    <li>User Name: tfq</li>
-                </ul>
+                <div class="list-group p-1 mt-2">
+                    <h6>Information</h6>
+                    <p><img src="{% static 'login/image/file-earmark-person-fill.svg' %}"> {{user.username}}(USER NAME)</p>
+                    <p><img src="{% static 'login/image/person-square.svg' %}"> {{user.name}}</p>
+                    <p><img src="{% static 'login/image/envelope.svg' %}"> {{user.email}}</p>
+                    <p><img src="{% static 'login/image/house.svg' %}"> Dhaka, Bashundhara</p>
+                </div>
+                <div class="col-8">
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
