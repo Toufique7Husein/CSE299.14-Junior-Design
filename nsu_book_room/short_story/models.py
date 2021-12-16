@@ -16,7 +16,7 @@ class ShortStory(models.Model):
         ordering = ['-update','-created']
     
     def __str__(self):
-        return str(self.title)
+        return self.title
     
     
 class Comment(models.Model):

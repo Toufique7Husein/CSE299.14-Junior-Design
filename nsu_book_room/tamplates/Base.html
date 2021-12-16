@@ -24,10 +24,12 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav">
                     <li class="nav-item shadow-sm p-1">
-                        <a class="nav-link" href="{% url 'home' %}"><img style="width:30px;" src="{% static 'login/image/house-fill.svg' %}"></a>
+                        {% block home %}
+                        <a class="nav-link" href="{% url 'home' %}"><img style="width:30px;" src="{% static 'login/image/house-fill.svg' %}"></a>{% endblock %}
                     </li>
                     <li class="nav-item shadow-sm p-1">
-                        <a class="nav-link" href="{% url 'shortstory' %}"><img style="width:30px;" src="{% static 'login/image/story_short.png' %}"></a>
+                        {% block shortstory %}
+                        <a class="nav-link" href="{% url 'shortstory' %}"><img style="width:30px;" src="{% static 'login/image/story_short.png' %}"></a> {% endblock %}
                     </li>
                     <li class="nav-item shadow-sm p-1">
                         <a class="nav-link" href="#"><img style="width:30px;" src="{% static 'login/image/long_story1.png' %}"></a>

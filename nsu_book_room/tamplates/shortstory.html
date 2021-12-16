@@ -1,8 +1,21 @@
-{% extends 'Base.html' %} {% load static %}{% block content %} {% block user %}{% if request.user.is_authenticated %}
+{% extends 'Base.html' %} {% load static %}{% block content %}
 
-<a href="{% url 'user_profile' user.id %}"><img style="width:30px; height:auto;" class="rounded-circle" src="{% static 'login/image/userImage.png' %}">{{ request.user.username }}</a>
+<!-- user-log-in-or-not -->
+{% block user %}{% if request.user.is_authenticated %}
+
+<a href="{% url 'user_profile' user.id %}"><img style="width:30px; height: 30px;" class="rounded-circle" src="{{ user.image.url }}">{{ request.user.username }}</a>
 <a href="{% url 'user_logout' %}">| logout</a> {% else %}
 <a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
+<!-- user log in or not end -->
+
+<!-- current page border -->
+{% block shortstory %}
+<a class="nav-link border rounded border-primary" href="{% url 'shortstory' %}"><img style="width:30px;" src="{% static 'login/image/story_short.png' %}"></a>
+{% endblock %}
+
+<!-- current page border end -->
+
+
 
 <main>
     <div class="container my-5 p-3 shadow-lg">

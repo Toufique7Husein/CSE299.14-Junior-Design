@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as user_login, logout
 from .froms import SignupFrom
 from .models import User
+from .froms import EditProfile
 
 
 # Create your views here.
@@ -55,4 +56,18 @@ def user_profile(request, pk):
     user = User.objects.get(id = int(pk))
     context = {'user' : user}
     return render(request, 'user_profile.html', context)
+
+def edit_profile(request, pk):
+    
+    user = request.user
+    form = EditProfile(instance=user)
+    
+    if request.method == 'POST':
+        form = EditProfile(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', user.id)
+    context = {'form':form}
+    return render(request, "editprofile.html", context)
+    
 
