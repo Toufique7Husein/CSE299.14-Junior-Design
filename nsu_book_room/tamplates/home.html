@@ -34,13 +34,17 @@
                                 {{ i.created|timesince }}
                             </footer>
                             <h6 class="font-italic text-weight-bold text-right">{{ i.title }}</h6>
-
+                            {% if request.user.id == i.writer.id %}
                             <footer class="blockquote-footer text-right">
                                 last edit <a href="{% url 'editshortstory' i.id %}">Edit</a> {{ i.created }}
                             </footer>
-                            {% if request.user.id == i.writer.id %}
+                            {% else %}
+                            <footer class="blockquote-footer text-right">
+                                last edit Edit {{ i.created }}
+                            </footer>
+                            {% endif %}
                         </p>
-                        {% endif %}
+
                         <p>{{ i.context|safe }}</p>
                     </div>
                     {% endfor %}
