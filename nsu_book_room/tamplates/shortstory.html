@@ -38,8 +38,24 @@
                     {% endfor %}
                 </table>
             </div>
-            <div class="col-lg-4 col-sm-12">
+            <!-- <div class="col-lg-4 col-sm-12">
                 <a href="{% url 'shortstory_from' %}" class="link-dark btn">ADD POST</a>
+            </div> -->
+
+
+
+            <div class="col-lg-4 col-sm-12 my-5 p-3">
+                <div class="rounded border border-dark">
+                    <div class="list-group">
+                        <h5 class="list-group-item list-group-item-action text-center active bg-info">
+                            Contribute Hare
+                        </h5>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'shortstory_from' %}">
+                            <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Short Story</a></button>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="#">
+                                <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Long Story</a></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

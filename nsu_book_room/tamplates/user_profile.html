@@ -11,12 +11,10 @@
 
         <!-- edit profile link -->
         {% if request.user.id == user.id %}
-        <a href="{% url 'edit_profile' user.id %}">Edit</a> {% endif %}
+        <p class="text-center text-color-danger"><a href="{% url 'edit_profile' user.id %}">Edit</a> </p>{% endif %}
         <!-- edit profile link -->
-
-
         <h6 class="text-center mb-3 ">{{user.name}}</h6>
-        <p class="font-italic text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt provident, quas necessitatibus ipsum aliquid, harum repellendus quidem, ad illum libero dignissimos explicabo cumque vel autem molestias! Quibusdam amet id pariatur.</p>
+        <p class="font-italic text-center">{{ user.bio }}</p>
         <!-- image section -->
         <div class="row">
             <div class="col-4">
