@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 def short_story(request):
     shortStory = ShortStory.objects.all()
     context = {'short_story': shortStory}
-    # for i in shortStory:
-    #     print(i.title)
     return render(request, 'shortstory.html', context)
 
 
