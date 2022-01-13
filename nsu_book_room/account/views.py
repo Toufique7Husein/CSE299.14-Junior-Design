@@ -11,8 +11,8 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         passward = request.POST['password']
-        print(username)
-        print(passward)
+       # print(username)
+        #print(passward)
         try:
             user = User.objects.get(username = username)
         except:

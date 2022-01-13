@@ -1,34 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'Base.html' %} {% load static %}{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blah</title>
-</head>
+<!-- user-log-in-or-not -->
+{% block user %}{% if request.user.is_authenticated %}
 
-<body>
-    <h1>Name | {{ read.title }}
-        <br>Writer | {{ read.writer.username }}
-    </h1>
-    <br/>
-    <div>
-        <p>{{ read.context | safe }}</p>
+<a href="{% url 'user_profile' user.id %}"><img style="width:30px; height: 30px;" class="rounded-circle" src="{{ user.image.url }}">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}">| logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
+<!-- user log in or not end -->
+
+<!-- current page border -->
+{% block shortstory %}
+<a class="nav-link border rounded border-primary" href="{% url 'shortstory' %}"><img style="width:30px;" src="{% static 'login/image/story_short.png' %}"></a>
+{% endblock %}
+<!-- current page border end -->
+<main>
+    <div class="container my-5 mb-3 shadow-lg">
+        <div>
+
+            <div class="shadow p-2 mb-3 bg-body rounded border border-dark">
+                <p>
+                    <div class="media col col-lg-2 p-1 mb-1">
+                        <!-- {% static 'login/image/userImage.png' %} -->
+                        <a href="{% url 'user_profile' i.writer.id %}"><img style="width: 30px; height : 30px" class="rounded-circle" src="{{ i.writer.image.url }}" alt=""></a>
+                        <div class="media-body ml-2">
+                            <h5>{{ i.writer.username }}</h5>
+                        </div>
+                    </div>
+                    <footer class="blockquote-footer text-left">
+                        {{ i.created|timesince }}
+                    </footer>
+                    <h6 class="font-italic text-weight-bold text-right">{{ i.title }}</h6>
+                    {% if request.user.id == i.writer.id %}
+                    <footer class="blockquote-footer text-right">
+                        last edit <a href="{% url 'editshortstory' i.id %}">Edit</a> {{ i.created }}
+                    </footer>
+                    {% else %}
+                    <footer class="blockquote-footer text-right">
+                        last edit Edit {{ i.created }}
+                    </footer>
+                    {% endif %}
+                </p>
+
+                <p>{{ i.context|safe }}</p>
+            </div>
+
+        </div>
+        <div>
+            <!-- <div class="shadow p-1 mb-3 bg-body rounded border border-dark">
+                <h3>Comments</h3>
+            </div> -->
+            <div class="shadow p-1 mb-1 bg-body rounded border border-danger">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control" type="text" name="body" placeholder="write your comments here...">
+                </form>
+            </div>
+            {% for i in comment %}
+            <div class="p-1 mb-3 bg-body rounded border border-primary">
+                <div class="media col col-lg-2 p-1 mb-1">
+                    <!-- {% static 'login/image/userImage.png' %} -->
+                    <a href="{% url 'user_profile' i.user.id %}"><img style="width: 30px; height : 30px" class="rounded-circle" src="{{ i.user.image.url }}" alt=""></a>
+                    <div class="media-body ml-2">
+                        <h5>{{ i.user.username }}</h5>
+                    </div>
+                </div>
+                <footer class="blockquote-footer text-left">
+                    {{ i.created|timesince }}
+                </footer>
+                <p>{{ i.body|safe }}</p>
+            </div>{% endfor %}
+        </div>
+        <div>
+        </div>
     </div>
-    <div>
-        <h3>Comments</h3>
-        {% for i in comment %}
-        <small><li>@{{ i.user.username }} | {{ i.created|timesince }}<h5></h5><p>{{ i.body }}</p></li>
-        </small> {% endfor %}
-    </div>
-
-    <div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <input type="text" name="body" placeholder="write your comments here...">
-        </form>
-    </div>
-</body>
-
-</html>
+</main>
+{% endblock %}

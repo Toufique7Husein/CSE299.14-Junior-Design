@@ -23,7 +23,7 @@ def readShortStory(request, pk):
         newmessage.save()
         return redirect('readShortStory', pk = post.id)
     comments = post.comment_set.all()
-    context = {"read":post, "comment" : comments}
+    context = {"i":post, "comment" : comments}
     return render(request, 'read_short_story.html', context)
 
 
