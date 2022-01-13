@@ -9,11 +9,13 @@
 <!-- user log in or not end -->
 
 <!-- current page border -->
-{% block shortstory %}
-<a class="nav-link border rounded border-primary" href="{% url 'shortstory' %}"><img style="width:30px;" src="{% static 'login/image/story_short.png' %}"></a>
+{% block longStory %}
+<a class="nav-link border rounded border-primary" href="{% url 'longstory' %}"><img style="width:30px; height:30px;" src="{% static 'login/image/long_story1.png' %}"></a>
 {% endblock %}
 
 <!-- current page border end -->
+
+
 
 <main>
     <div class="container my-5 p-3 shadow-lg">
@@ -28,7 +30,7 @@
                     {% for i in short_story %}
                     <tr class="table-success">
                         <td class="table-info">@{{ i.writer.username }}</td>
-                        <td class="table-light"><a href="{% url 'readShortStory' i.id %}">{{ i.title }}</a></td>
+                        <td class="table-light"><a href="{% url 'readLongStory' i.id %}">{{ i.title }}</a></td>
                         <td class="table-dark">
                             <p class="text-mute">{{ i.created }}</p>
                         </td>
@@ -47,7 +49,7 @@
                         </h5>
                         <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'shortstory_from' %}">
                             <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Short Story</a></button>
-                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="#">
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'longstory_from' %}">
                                 <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Long Story</a></button>
                     </div>
                 </div>

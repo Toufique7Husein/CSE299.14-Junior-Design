@@ -1,0 +1,33 @@
+from django.db import models
+from django.db.models.deletion import CASCADE
+from account.models import User
+from ckeditor.fields import RichTextField
+# Create your models here.
+
+class LongStory(models.Model):
+    title = models.CharField(max_length=200)
+    writer = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
+    #perticipents
+    #context = models.TextField(null = True, blank = True)
+    context = RichTextField(null = True, blank = True) 
+    update = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-update','-created']
+    
+    def __str__(self):
+        return self.title
+    
+    
+class Comment_LongStory(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True)
+    post = models.ForeignKey(LongStory, on_delete = models.CASCADE)
+    body = models.TextField()
+    update = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created', '-update']
+        
+    def __str__(self):
+        return self.body[0:100]
