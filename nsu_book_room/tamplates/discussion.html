@@ -1,0 +1,50 @@
+{% extends 'Base.html' %} {% load static %} {% block content %}
+
+<!-- user image start -->
+{% block user %}{% if request.user.is_authenticated %}
+<a href="{% url 'user_profile' user.id %}"><img style="width:30px; height: 30px;" class="rounded-circle" src="{{ user.image.url }}">{{ request.user.username }}</a>
+<a href="{% url 'user_logout' %}">| logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}
+<!-- user image end -->
+
+<!-- home active start -->
+{% block discussion %}
+<a class="nav-link border rounded border-primary" href="#"><img style="width:30px; height:30px" src="{% static 'login/image/people-fill.svg' %}"></a>
+{% endblock %}
+<!-- home active end -->
+<main>
+    <div class="container my-5 p-1 shadow-lg">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <h1 class="p-3">Recent Discussion</h1>
+                <div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 my-5 p-3">
+                <div class="rounded border border-dark">
+                    <div class="list-group">
+                        <h5 class="list-group-item list-group-item-action text-center active bg-info">
+                            Create New Topic
+                        </h5>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'shortstory_from' %}">
+                            <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Add Your Topic</a></button>
+                    </div>
+                </div>
+
+
+                <div class="rounded border border-dark my-5">
+                    <div class="list-group">
+                        <h5 class="list-group-item list-group-item-action text-center active bg-dark">
+                            User
+                        </h5>
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold"><a href="{% url 'shortstory_from' %}">
+                            <img style="width: 20px;" src="{% static 'login/image/plus-lg.svg'%}" alt=""> Add Your Topic</a></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Section of long Story -->
+{% endblock %}

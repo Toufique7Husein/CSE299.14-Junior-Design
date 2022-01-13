@@ -36,7 +36,8 @@
                         <a class="nav-link" href="{% url 'longstory' %}"><img style="width:30px; height:30px" src="{% static 'login/image/long_story1.png' %}"></a>{% endblock %}
                     </li>
                     <li class="nav-item shadow-sm p-1">
-                        <a class="nav-link" href="#"><img style="width:30px; height:30px" src="{% static 'login/image/people-fill.svg' %}"></a>
+                        {% block discussion %}
+                        <a class="nav-link" href="{% url 'discussion_home' %}"><img style="width:30px; height:30px" src="{% static 'login/image/people-fill.svg' %}"></a>{% endblock %}
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto p-1">

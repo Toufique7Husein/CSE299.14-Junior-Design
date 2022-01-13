@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account',
     'long_story',
     'short_story',
+    'discussion',
     'ckeditor',
 ]
 
