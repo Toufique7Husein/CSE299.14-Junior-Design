@@ -1,2 +1,8 @@
-# CSE299.14-Junior-Design
-This project about blogging site. It is not a normal blog site, basically it is kind of a small social site.Besic concept to improve bond each nsuers.
+# NSU BOOK ROOM
+This project's primary goal is to help new Writers. It is a social media where a writer can write short stories, long stories, and blogs. Also, users can comment on a particular post. 
+Criticize any topic; there is a dedicated section called blogging. 
+Any users can share their thoughts and idea to discuss any of them. 
+
+Each User will have a personal profile where they can view their personal information and edit it. This section also shows their writing ratings and their bookmarks. 
+
+Users can send a friend to others. There will be a separate chat box for contact between familiar friends.
