@@ -7,7 +7,7 @@ Each User will have a personal profile where they can view their personal inform
 
 Users can send a friend to others. There will be a separate chat box for contact between familiar friends.
 
-#Technologies Used
+# Technologies Used
 * Django
 * Python
 * MySql
